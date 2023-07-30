@@ -7,12 +7,16 @@
   font-family: Kanit;
   font-size: larger;">
   <div style="text-align: center;">
-    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+    <div style="display: flex; flex-direction: row; justify-content: space-around; text-align: left;">
       <ul style="font-size: small;">
-        <li *ngFor="let captionItem of captionList">{{captionItem.message}}</li>
+        <li *ngFor="let captionItem of captionList">
+          <img [src]="captionItem.icon" style="height: 30px;">{{captionItem.message}}
+        </li>
       </ul>
       <ul style="font-size: small;">
-        <li *ngFor="let captionItem of usedCaptionList">{{captionItem.message}}</li>
+        <li *ngFor="let captionItem of usedCaptionList">
+          <img [src]="captionItem.icon" style="height: 30px;">{{captionItem.message}}
+        </li>
       </ul>
     </div>
 
@@ -20,9 +24,17 @@
     <img [src]="imgSrc" style="width: 200px; margin: 10px;">
     <!--ออกสอบ *ngIf="value" if title=null | false : print Emtry(not display 'Caption' )-->
     <div>
-      <button [draggable]="!title" class="btn btn-warning" (click)="handleClickButton()">
-        Next Caption
-      </button>
+      <!--แสดง button Reset Caption เมื่อ button Next Caption : [draggable]="true"-->
+      <div *ngIf="!title">
+        <button class="btn btn-warning" (click)="resetClickButton()">
+          Reset Caption
+        </button>
+      </div>
+      <div *ngIf="title">
+        <button [draggable]="true" class="btn btn-warning" [disabled]="!title" (click)="handleClickButton()">
+          Next Caption
+        </button>
+      </div>
     </div>
     <!--[disabled]="!value" if title = null | true : print Emtry button-->
   </div>

@@ -58,6 +58,10 @@ export class AppComponent {
   handleClickButton() {
     this.title = this.randomCaption()?.message;
   }
+  resetClickButton() {
+    this.usedCaptionList = [];
+    this.title = this.randomCaption()?.message;
+  }
 
   private getRandomInt(max: number) {
     return Math.floor(Math.random() * max)
